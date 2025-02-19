@@ -16,28 +16,6 @@ Content-Type: application/json
     "password": "Password!@#123"
 }
 
-# ### Fetch all tasks
-# GET http://localhost:5002/api/v1/tasks
-# Content-Type: application/json
-
-# ### Create new task
-# POST http://localhost:5002/api/v1/tasks
-# Content-Type: application/json
-
-# {
-#     "title": "Super Important Task 10",
-#     "date": "2022-01-28T01:55:25Z",
-#     "description": "Fix the bugs reported in the last sprint. It's vital to tackle these issues to ensure the stability of our application and maintain trust with our users.",
-#     "priority": "High",
-#     "status": "Completed"
-# }
-
-# ### Update status of an existed task
-# PATCH http://localhost:5002/api/v1/tasks
-# Content-Type: application/json
-
-# {
-#   "id": "115e9864-b527-43ce-adcf-47a7bd511949",
-#   "status": "InProgress"
-# }
-# ### 115e9864-b527-43ce-adcf-47a7bd511949
+### Get me
+GET http://localhost:8005/users/me
+Content-Type: application/json

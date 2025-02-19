@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Logger } from 'nestjs-pino';
+import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +14,11 @@ async function bootstrap() {
    *            that are not defined in dto
    **/
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  /**
+   * apply middleware for every route and run before every request
+   * in this case: parse cookie
+   */
+  app.use(cookieParser());
   /**
    * getOrThrow: get if exists, otherwise throw error
    */
