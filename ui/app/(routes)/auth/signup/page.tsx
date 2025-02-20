@@ -31,7 +31,7 @@ export default function Signup() {
         <Button type="submit" variant="contained">
           Signup
         </Button>
-        <Link component={NextLink} href="/login" className="self-center">
+        <Link component={NextLink} href="/auth/login" className="self-center">
           Login
         </Link>
       </Stack>

@@ -6,6 +6,7 @@ import AppProviders from './app.providers'
 import { Container, CssBaseline } from '@mui/material'
 import Header from './_components/header'
 import authenticated from './_action/check-auth.action'
+import logout from './_action/logout.action'
 
 const geistSans = localFont({
   src: './_fonts/GeistVF.woff',
@@ -29,6 +30,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const isAuthenticated = await authenticated()
+
   return (
     <html lang="en">
       <body
@@ -39,7 +41,7 @@ export default async function RootLayout({
          **/}
         <AppProviders authenticated={isAuthenticated}>
           <CssBaseline />
-          <Header />
+          <Header logout={logout} />
           <Container>{children}</Container>
         </AppProviders>
       </body>

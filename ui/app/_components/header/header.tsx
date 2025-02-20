@@ -1,5 +1,6 @@
 'use client'
 import { useState, useContext } from 'react'
+import Link from 'next/link'
 
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -17,9 +18,15 @@ import MenuItem from '@mui/material/MenuItem'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
 import { AuthContext } from '@/app/(routes)/auth/auth.context'
 import { routes, unauthenticatedRoutes } from '@/app/_constants/routes'
+import { useRouter } from 'next/navigation'
 
-export default function Header() {
+interface HeaderProps {
+  logout: () => Promise<void>
+}
+
+export default function Header({ logout }: HeaderProps) {
   const isAuthenticated = useContext(AuthContext)
+  const router = useRouter()
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
 
@@ -43,8 +50,8 @@ export default function Header() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -55,7 +62,7 @@ export default function Header() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            SHOPPY
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -86,7 +93,13 @@ export default function Header() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page.title}
+                  onClick={() => {
+                    router.push(page.path)
+                    handleCloseNavMenu()
+                  }}
+                >
                   <Typography sx={{ textAlign: 'center' }}>
                     {page.title}
                   </Typography>
@@ -100,8 +113,8 @@ export default function Header() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -119,21 +132,24 @@ export default function Header() {
             {pages.map((page) => (
               <Button
                 key={page.title}
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  router.push(page.path)
+                  handleCloseNavMenu()
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.title}
               </Button>
             ))}
           </Box>
-          {isAuthenticated && <Profile />}
+          {isAuthenticated && <Profile logout={logout} />}
         </Toolbar>
       </Container>
     </AppBar>
   )
 }
 
-const Profile = () => {
+const Profile = ({ logout }: HeaderProps) => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -166,7 +182,13 @@ const Profile = () => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        <MenuItem key="Logout" onClick={handleCloseUserMenu}>
+        <MenuItem
+          key="Logout"
+          onClick={async () => {
+            await logout()
+            handleCloseUserMenu()
+          }}
+        >
           <Typography sx={{ textAlign: 'center' }}>Logout</Typography>
         </MenuItem>
       </Menu>

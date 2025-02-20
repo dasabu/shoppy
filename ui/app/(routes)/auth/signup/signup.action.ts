@@ -1,7 +1,7 @@
 'use server'
 
 import { FormState } from '@/app/_interfaces/form-state.interface'
-import { post } from '@/app/_common/_utils/fetch'
+import { post } from '@/app/_utils/fetch'
 import { redirect } from 'next/navigation'
 
 export default async function createUser(
@@ -12,5 +12,5 @@ export default async function createUser(
   if (error?.email || error?.password) {
     return { error }
   }
-  redirect('/')
+  redirect('/auth/login')
 }
