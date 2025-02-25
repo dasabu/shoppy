@@ -1,7 +1,6 @@
-import getMe from './actions/get-me.action'
+import CreateProductFab from "./components/product/create-product-fab";
 
 export default async function Home() {
-  const me = await getMe()
-  console.log(me)
-  return <></>
+  
+  return <><CreateProductFab /></>
 }

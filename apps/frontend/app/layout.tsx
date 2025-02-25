@@ -4,9 +4,9 @@ import './globals.css'
 
 import AppProviders from './app.providers'
 import { Container, CssBaseline } from '@mui/material'
-import Header from './components/header'
 import checkAuth from './actions/check-auth.action'
 import logout from './actions/logout.action'
+import Header from './components/header'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
