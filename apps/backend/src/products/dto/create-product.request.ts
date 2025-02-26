@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateProductRequest {
@@ -11,5 +12,6 @@ export class CreateProductRequest {
 
   @IsNumber()
   @IsNotEmpty()
+  @Type(() => Number)
   price: number;
 }
