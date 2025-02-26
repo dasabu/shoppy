@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers'
-import { categorizeErrors } from './errors'
 import { API_URL } from '../constants/api'
-import { ErrorResponse } from '../interfaces/error-response.interface'
+import { getErrorMessage } from './errors'
 
 const getHeaders = () => ({
   Cookie: cookies().toString(),
@@ -18,9 +17,9 @@ export const post = async (path: string, formData: FormData) => {
   })
   const parsedResponse = await response.json()
   if (!response.ok) {
-    return { error: categorizeErrors(parsedResponse as ErrorResponse) }
+    return { error: getErrorMessage(parsedResponse) }
   }
-  return { error: {} }
+  return { error: '' }
 }
 
 export const get = async (path: string) => {

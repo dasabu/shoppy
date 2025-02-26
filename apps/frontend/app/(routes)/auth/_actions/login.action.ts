@@ -1,10 +1,9 @@
 'use server'
 
 import { API_URL } from '@/app/constants/api'
-import { ErrorResponse } from '@/app/interfaces/error-response.interface'
 import { FormState } from '@/app/interfaces/form-state.interface'
 import { redirect } from 'next/navigation'
-import { categorizeErrors } from '@/app/utils/errors'
+import { getErrorMessage } from '@/app/utils/errors'
 import { setAuthCookie } from '@/app/actions/set-cookie.action'
 
 export default async function login(_prevState: FormState, formData: FormData) {
@@ -15,7 +14,7 @@ export default async function login(_prevState: FormState, formData: FormData) {
   })
   const parsedResponse = await response.json()
   if (!response.ok) {
-    return { error: categorizeErrors(parsedResponse as ErrorResponse) }
+    return { error: getErrorMessage(parsedResponse) }
   }
   setAuthCookie(response)
   redirect('/')
