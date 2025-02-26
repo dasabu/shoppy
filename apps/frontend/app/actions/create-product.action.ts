@@ -1,8 +1,8 @@
 'use server'
 
+import { API_URL } from '@/app/constants/api'
+import { getHeaders, post } from '@/app/utils/fetch'
 import { revalidateTag } from 'next/cache'
-import { getHeaders, post } from '../utils/fetch'
-import { API_URL } from '../constants/api'
 
 export default async function createProduct(formData: FormData) {
   const response = await post('products', formData)

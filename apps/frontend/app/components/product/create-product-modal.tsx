@@ -1,6 +1,5 @@
 'use client'
 
-import createProduct from '@/app/actions/create-product.action'
 import { FormState } from '@/app/interfaces/form-state.interface'
 import {
   Alert,
@@ -13,6 +12,7 @@ import {
 } from '@mui/material'
 import { CSSProperties, useState } from 'react'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
+import createProduct from '@/app/actions/create-product.action'
 
 interface CreateProductModalProps {
   open: boolean

@@ -1,8 +1,8 @@
-import getProducts from '@/app/actions/get-products.action'
 import { Grid2 } from '@mui/material'
-import ProductCard from './product-card'
+import getProducts from '@/app/actions/get-products.action'
+import Product from './product'
 
-export default async function ProductList() {
+export default async function Products() {
   /**
    * This result will be cached when we create new product
    * so that the UI will not update => revalidate cache:
@@ -29,7 +29,7 @@ export default async function ProductList() {
     >
       {products.map((product) => (
         <Grid2 key={product.id} size={{ sm: 6, lg: 4, xs: 12 }}>
-          <ProductCard product={product} />
+          <Product product={product} />
         </Grid2>
       ))}
     </Grid2>

@@ -1,10 +1,10 @@
 import CreateProductFab from './components/product/create-product-fab'
-import ProductList from './components/product/product-list'
+import Products from './components/product/products'
 
 export default async function Home() {
   return (
     <>
-      <ProductList />
+      <Products />
       <CreateProductFab />
     </>
   )
