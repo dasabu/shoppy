@@ -1,5 +1,7 @@
+import { API_URL } from '@/app/constants/api'
 import { Product } from '@/app/interfaces/product.interface'
-import { Card, Typography } from '@mui/material'
+import { Card, Stack, Typography } from '@mui/material'
+import Image from 'next/image'
 
 interface ProductProps {
   product: Product
@@ -8,9 +10,21 @@ interface ProductProps {
 export default function ProductCard({ product }: ProductProps) {
   return (
     <Card className="p-4">
-      <Typography variant="h4">{product.name}</Typography>
-      <Typography>{product.description}</Typography>
-      <Typography>${product.price}</Typography>
+      <Stack gap={2}>
+        <Typography variant="h4">{product.name}</Typography>
+        {product.imageExists && (
+          <Image
+            src={`${API_URL}/images/products/${product.id}.jpeg`}
+            width="0"
+            height="0"
+            className="w-full h-auto"
+            alt={`${product.name}-image`}
+            sizes="100vw"
+          />
+        )}
+        <Typography>{product.description}</Typography>
+        <Typography>${product.price}</Typography>
+      </Stack>
     </Card>
   )
 }

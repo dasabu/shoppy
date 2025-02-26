@@ -45,7 +45,7 @@ export class ProductsService {
 
   private async imageExists(productId: number) {
     try {
-      await fs.access(`${PRODUCT_IMAGES}/${productId}.jpg`, fs.constants.F_OK);
+      await fs.access(`${PRODUCT_IMAGES}/${productId}.jpeg`, fs.constants.F_OK);
       return true;
     } catch (error) {
       return false;
