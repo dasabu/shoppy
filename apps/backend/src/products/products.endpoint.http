@@ -3,11 +3,15 @@ POST http://localhost:8005/products
 Content-Type: application/json
 
 {
-    "name": "Product 1",
-    "description": "Product 1 Description",
-    "price": 100
+    "name": "Banana",
+    "description": "Banana Description",
+    "price": 200
 }
 
 ### Get Products
 GET http://localhost:8005/products
+Content-Type: application/json
+
+### Get Products
+GET http://localhost:8005/products?status=available
 Content-Type: application/json

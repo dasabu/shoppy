@@ -4,5 +4,9 @@ import { get } from '@/app/utils/fetch'
 import { IProduct } from '../interfaces/product.interface'
 
 export default async function getProducts() {
-  return get<IProduct[]>('products', ['products'])
+  return get<IProduct[]>(
+    'products',
+    ['products'],
+    new URLSearchParams({ status: 'available' })
+  )
 }
