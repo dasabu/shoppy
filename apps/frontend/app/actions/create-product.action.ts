@@ -2,7 +2,7 @@
 
 import { API_URL } from '@/app/constants/api'
 import { getHeaders, post } from '@/app/utils/fetch'
-import { revalidateTag } from 'next/cache'
+import revalidateProducts from './revalidate-products'
 
 export default async function createProduct(formData: FormData) {
   const response = await post('products', formData)
@@ -11,7 +11,7 @@ export default async function createProduct(formData: FormData) {
     await uploadProductImage(response.data.id, productImage)
   }
   // after create a product, revalidate cache (re-execute the "get-products" action)
-  revalidateTag('products')
+  revalidateProducts()
   return response
 }
 

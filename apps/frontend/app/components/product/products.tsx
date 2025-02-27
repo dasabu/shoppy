@@ -1,6 +1,5 @@
-import { Grid2 } from '@mui/material'
 import getProducts from '@/app/actions/get-products.action'
-import Product from './product'
+import ProductsGrid from './products-grid'
 
 export default async function Products() {
   /**
@@ -12,26 +11,5 @@ export default async function Products() {
    */
   const products = await getProducts()
 
-  return (
-    <Grid2
-      container
-      spacing={3}
-      sx={{
-        height: '85vh',
-        overflow: 'scroll',
-        // Hide scrollbar on webkit browser
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-        msOverflowStyle: 'none', // hide scrollbar on IE/Edge
-        scrollbarWidth: 'none', // hide scrollbar on Firefox
-      }}
-    >
-      {products.map((product) => (
-        <Grid2 key={product.id} size={{ sm: 6, lg: 4, xs: 12 }}>
-          <Product product={product} />
-        </Grid2>
-      ))}
-    </Grid2>
-  )
+  return <ProductsGrid products={products} />
 }
