@@ -2,6 +2,7 @@ import { Grid2, Stack, Typography } from '@mui/material'
 import getProduct from '../_action/get-product.action'
 import Image from 'next/image'
 import { getProductImageUrl } from '@/app/utils/product'
+import Checkout from '@/app/components/checkout'
 
 interface SingleProductProps {
   params: { productId: number }
@@ -29,6 +30,7 @@ export default async function SingleProduct({ params }: SingleProductProps) {
           <Typography variant="h2">{product.name}</Typography>
           <Typography>{product.description}</Typography>
           <Typography variant="h4">${product.price}</Typography>
+          <Checkout productId={product.id} />
         </Stack>
       </Grid2>
     </Grid2>
