@@ -1,0 +1,7 @@
+### Checkout session
+POST http://localhost:8005/checkout/session
+Content-Type: application/json
+
+{
+    "productId": 10
+}
